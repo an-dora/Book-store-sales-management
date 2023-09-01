@@ -1,0 +1,23 @@
+﻿@using DoAn2VADT.Database.Entities
+@model List<Publisher>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+
+            <td scope="row" class="text-center">@item.Name</td>
+            <td scope="row" class="text-center">@item.PhoneNumber</td>
+            <td scope="row" class="text-center">@item.Address</td>
+            <td scope="row" class="text-center">@item.Mail</td>
+
+            <td scope="row" class="text-center">@item.CreatedAt</td>
+            <td class="text-center" style="width:300px;">
+                <a class="btn btn-primary btn-tone m-r-5 fas fa-eye" asp-controller="Publisher" asp-action="Details" asp-route-id="@item.Id"></a>
+                <a class="btn btn-secondary btn-tone m-r-5 fas fa-edit" asp-controller="Publisher" asp-action="Edit" asp-route-id="@item.Id"></a>
+                <a class="btn btn-danger btn-tone m-r-5 far fa-trash-alt" asp-controller="Publisher" asp-action="Delete" asp-route-id="@item.Id"></a>
+
+            </td>
+        </tr>
+    }
+}

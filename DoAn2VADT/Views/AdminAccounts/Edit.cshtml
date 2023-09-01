@@ -1,0 +1,63 @@
+﻿@model DoAn2VADT.Database.Entities.Account
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+        <form asp-action="Edit">
+            <div class="page-header">
+                <div class="header-sub-title">
+                    <nav class="breadcrumb breadcrumb-dash">
+                        <a asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+                        <a asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index" class="breadcrumb-item">Danh sách </a>
+                        <span class="breadcrumb-item active">Edit</span>
+                    </nav>
+                </div>
+            </div>
+            <!-- Default box -->
+
+            <div class="card-header">
+                <div class="row">
+                    <div class=" col-md-6">
+                    </div>
+                    <div class=" col-md-6 text-right">
+                        <a class=" btn btn-success fas fa-undo-alt" asp-action="Index"></a>
+                        <button class="btn btn-primary fas fas fa-save " type="submit"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <input type="hidden" asp-for="CreatedAt" />
+                <input type="hidden" asp-for="UpdatedAt" />
+                <input type="hidden" asp-for="Id" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Tên đăng nhập</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class=" row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Password" class="control-label">Password</label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="font-weight-semibold" for="productCategory">Quyền </label>
+                        <select class="custom-select" asp-for="Role" style="min-width: 200px;">
+                            <option value="" disabled selected>Chọn quyền</option>
+                            <option value="1">Admin</option>
+                            <option value="2">User</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+        </form>
+    </section>
+    <!-- /.content -->
+</div>

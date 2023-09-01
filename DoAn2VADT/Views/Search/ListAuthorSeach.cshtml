@@ -1,0 +1,25 @@
+﻿@using DoAn2VADT.Database.Entities
+@model List<Author>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @item.Name
+            </td>
+            <td><img width="60" height="90" src="~/images/author/@item.Image" alt="@item.Name" /></td>
+            <td>@item.HomeTown</td>
+            <td>@item.Birthday </td>
+            <td>@item.Description </td>
+            <td>@item.CreatedAt</td>
+            <td class="text-center" style="width:300px;">
+                <a class="btn btn-primary btn-tone m-r-5 fas fa-eye" asp-controller="Author" asp-action="Details" asp-route-id="@item.Id"></a>
+                <a class="btn btn-secondary btn-tone m-r-5 fas fa-edit" asp-controller="Author" asp-action="Edit" asp-route-id="@item.Id"></a>
+                <a class="btn btn-danger btn-tone m-r-5 far fa-trash-alt" asp-controller="Author" asp-action="Delete" asp-route-id="@item.Id"></a>
+
+            </td>
+        </tr>
+    }
+}

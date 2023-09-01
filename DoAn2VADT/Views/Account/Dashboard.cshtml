@@ -1,0 +1,78 @@
+﻿@model DoAn2VADT.Database.Entities.Account
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content my-2">
+        <form asp-action="Details">
+            <div class="page-header">
+                <div class="header-sub-title">
+                    <nav class="breadcrumb breadcrumb-dash">
+                        <a asp-controller="Dash" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+                        <span class="breadcrumb-item active">Chi tiết</span>
+                    </nav>
+                </div>
+            </div>
+            <!-- Default box -->
+
+            <div class="card-header">
+                <div class="row">
+                    <div class=" col-md-6">
+                    </div>
+                    <div class=" col-md-6 text-right">
+                        <a class=" btn btn-primary fas fa-undo-alt" asp-controller="Dash" asp-action="Index"></a>
+                        <a class=" btn btn-success fas fa-edit" asp-action="EditAc" asp-route-id="@Model.Id"> </a>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content m-t-15">
+                <div class="tab-pane fade show active">
+                    <div class="card">
+                        <div class="card-body">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class=" row">
+                                <div class="form-group col-md-6">
+                                    <label class="font-weight-semibold" for="ShortDesc">Tên đăng nhập</label>
+                                    <div class="form-control">@Html.DisplayFor(model => model.Name)</div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="font-weight-semibold" for="ShortDesc">Quyền</label>
+                                    @if (Model.Role == 1)
+                                    {
+                                        <div class="form-control">Quản trị viên</div>
+                                    }
+                                    else
+                                    {
+                                        <div class="form-control">Người sử dụng</div>
+                                    }
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="font-weight-semibold" for="ShortDesc">Mật khẩu</label>
+                                <div class="form-control">@Html.DisplayFor(model => model.Password)</div>
+                            </div>
+
+                            <div class=" row">
+                                <div class="form-group col-md-6">
+                                    <label class="font-weight-semibold" for="ShortDesc">Ngày tạo</label>
+                                    <div class="form-control">@Html.DisplayFor(model => model.CreatedAt)</div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="font-weight-semibold" for="ShortDesc">Ngày Update</label>
+                                    <div class="form-control">@Html.DisplayFor(model => model.UpdatedAt)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </section>
+    <!-- /.content -->
+</div>

@@ -1,0 +1,104 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<DoAn2VADT.Database.Entities.Publisher>
+
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Index" + CurrentPage;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Nhà xuất bản : trang @CurrentPage </span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="input-affix m-v-10">
+                            <i class="prefix-icon anticon anticon-search opacity-04"></i>
+                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="Tìm kiếm ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 text-right">
+                <a class="btn btn-primary" asp-controller="Publisher" asp-action="Create"><i class="anticon anticon-plus-circle m-r-5"></i><span>Thêm </span></a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <td class="text-center">Tên nhà XB</td>
+                        <td class="text-center">Số điện thoại</td>
+                        <td class="text-center">Quê quán</td>
+                        <td class="text-center">Email</td>
+                        <td class="text-center">Ngày tạo</td>
+                        <td scope="col" class="text-center" style="width:300px;">Chức năng</td>
+                    </tr>
+                </thead>
+                <tbody id="records_table">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td scope="row" class="text-center">@item.Name</td>
+                                <td scope="row" class="text-center">@item.PhoneNumber</td>
+                                <td scope="row" class="text-center">@item.Address</td>
+                                <td scope="row" class="text-center">@item.Mail</td>
+
+                                <td scope="row" class="text-center">@item.CreatedAt</td>
+                                <td class="text-center" style="width:300px;">
+                                    <a class="btn btn-primary btn-tone m-r-5 fas fa-eye" asp-controller="Publisher" asp-action="Details" asp-route-id="@item.Id"></a>
+                                    <a class="btn btn-secondary btn-tone m-r-5 fas fa-edit" asp-controller="Publisher" asp-action="Edit" asp-route-id="@item.Id"></a>
+                                    <a class="btn btn-danger btn-tone m-r-5 far fa-trash-alt" asp-controller="Publisher" asp-action="Delete" asp-route-id="@item.Id"></a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+
+
+                </tbody>
+            </table>
+            <div aria-label="Page navigation example">
+                <ul class="pagination">
+                    <pager class="pager-container" list="@Model" asp-controller="Publisher" asp-route-CatID="@ViewBag.CurrentCateID" asp-action="Index" />
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#keyword").keyup(function () {
+                var strkeyword = $('#keyword').val();
+                $.ajax({
+                    url: '/Search/FindPubli/',
+                    datatype: "json",
+                    type: "POST",
+                    data: { keyword: strkeyword },
+                    async: true,
+                    success: function (results) {
+                        $("#records_table").html("");
+                        $("#records_table").html(results);
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
+}

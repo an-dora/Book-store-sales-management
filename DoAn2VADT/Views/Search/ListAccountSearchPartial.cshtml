@@ -1,0 +1,39 @@
+﻿@using DoAn2VADT.Database.Entities
+@model List<Account>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @item.Id
+            </td>
+            <td>@item.Name</td>
+            <td>@item.Password</td>
+            <td>
+                @if (@item.Role == 1)
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-success badge-dot m-r-10"></div>
+                        <div>Admin</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-danger badge-dot m-r-10"></div>
+                        <div>User</div>
+                    </div>
+                }
+            </td>
+            <td>@item.CreatedAt</td>
+            <td>
+                <a class="btn btn-primary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Details" asp-route-id="@item.Id">Chi tiết</a>
+                <a class="btn btn-secondary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Edit" asp-route-id="@item.Id">Sửa</a>
+                <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
+
+            </td>
+        </tr>
+    }
+}

@@ -1,0 +1,93 @@
+﻿@model DoAn2VADT.Database.Entities.Distributor
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card">
+    <div class="card-body">
+        <div class="page-header">
+            <div class="header-sub-title">
+                <nav class="breadcrumb breadcrumb-dash">
+                    <a asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+                    <a asp-controller="Distributor" asp-action="Index" class="breadcrumb-item">Nhà phát hành</a>
+                    <span class="breadcrumb-item active">Chi tiết nhà PT</span>
+                </nav>
+            </div>
+        </div>
+        <!-- Default box -->
+
+        <div class="card-header">
+            <div class="row">
+                <div class=" col-md-6">
+                    <strong>DANH SÁCH NHÀ PT</strong>
+                </div>
+                <div class=" col-md-6 text-right">
+                    <a class=" btn btn-primary fas fa-undo-alt" asp-action="Index"> Quay về</a>
+                    <a class=" btn btn-success fas fa-edit" asp-action="Edit" asp-route-id="@Model.Id"> Edit</a>
+                    <a class=" btn btn-danger far fa-trash-alt" asp-action="Delete" asp-route-id="@Model.Id"> Xóa</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <form asp-action="Details">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Tên nhà PT</label>
+                    <div class="form-control">@Html.DisplayFor(model => model.Name)</div>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address" class="control-label">Địa chỉ</label>
+                    <div class="form-control">@Html.DisplayFor(model => model.Address)</div>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="control-label">Số điện thoại</label>
+                    <div class="form-control">@Html.DisplayFor(model => model.PhoneNumber)</div>
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="Email" class="control-label">Email</label>
+                        <div class="form-control">@Html.DisplayFor(model => model.Email)</div>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="Discount" class="control-label">Chiết khấu</label>
+                        <div class="form-control">@Html.DisplayFor(model => model.Discount)</div>
+                        <span asp-validation-for="Discount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="CreatedAt" class="control-label">Ngày tạo</label>
+                        <div class="form-control">@Html.DisplayFor(model => model.CreatedAt)</div>
+                        <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="UpdatedAt" class="control-label">Ngày update</label>
+                        <div class="form-control">@Html.DisplayFor(model => model.UpdatedAt)</div>
+                        <span asp-validation-for="UpdatedAt" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="CreateUserId" class="control-label">UserID</label>
+                        <input asp-for="CreateUserId" class="form-control" />
+                        <span asp-validation-for="CreateUserId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="UpdateUserId" class="control-label">Update UserID</label>
+                        <input asp-for="UpdateUserId" class="form-control" />
+                        <span asp-validation-for="UpdateUserId" class="text-danger"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- /.card-body -->
+
+
+    </div>
+    <!-- /.content -->
+</div>

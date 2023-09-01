@@ -1,0 +1,84 @@
+﻿@using DoAn2VADT.Database.Entities
+@using PagedList.Core.Mvc
+@model List<DoAn2VADT.Models.OrderItem>
+@{
+    ViewData["Title"] = "Thanh Toan";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    decimal? totalG = 0;
+}
+
+<h2>GHI NHẬN THANH TOÁN</h2>
+
+@if (Model.Count > 0)
+{
+    int? total = 0;
+    int stt = 1;
+
+    <table class="table">
+        <tr>
+            <th>#</th>
+            <th>Sản phẩm</th>
+            <th>Đơn Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+            <th></th>
+        </tr>
+        @foreach (var cartitem in Model)
+        {
+            var thanhtien = cartitem.quantity * cartitem.book.Price;
+                       total += thanhtien;
+            totalG = total;
+            <tr>
+                <td>@(stt++)</td>
+                <td>@cartitem.book.Name</td>
+                <td>@(cartitem.book.Price.ToString())</td>
+                <td><input asp-for="@cartitem.quantity" id="@($"quantity-{cartitem.book.Id}")"/></td>
+                <td>@(thanhtien.ToString())</td>
+                <td>
+                    <button class="btn btn-success updateorderitem"
+                            data-bookid="@cartitem.book.Id">
+                        Cập nhật
+                    </button>
+                    <a asp-route="removeorder" asp-route-id="@cartitem.book.Id"
+                       class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="4" class="text-right">Tổng tiền</td>
+            <td>@(total.ToString())</td>
+            <td></td>
+        </tr>
+    </table>
+
+    <a asp-route="checkout" asp-route-total="@totalG" class="btn btn-success">Ghi nhận</a>
+
+    @section Scripts {
+        <script>
+$(document).ready(function () {
+    $(".updateorderitem").click(function (event) {
+                event.preventDefault();
+                var bookid = $(this).attr("data-bookid");
+        var quantity = $("#quantity-" + bookid).val();
+        console.log(quantity);
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.RouteUrl("updateorder")",
+                    data: {
+                        id: bookid,
+                        quantity: quantity
+                    },
+                    success: function (result) {
+                        window.location.href = "@Url.RouteUrl("order")";
+                    }
+                });
+            });
+});
+        </script>
+    }
+
+}
+else
+{
+    <p class="alert alert-danger">Ghi nhận trống</p>
+}

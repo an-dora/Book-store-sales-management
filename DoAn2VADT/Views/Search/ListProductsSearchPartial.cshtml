@@ -1,0 +1,44 @@
+﻿@using DoAn2VADT.Database.Entities
+@model List<Book>
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @item.Id
+            </td>
+            <td>
+                <img width="60" height="90" src="~/images/book/@item.Image" alt="@item.Name" />
+            </td>
+            <td>@item.Name</td>
+            <td>@item.Category.Name</td>
+            <td>@item.Price VNĐ</td>
+            <td>@item.Quantity</td>
+            <td>
+                @if (item.Quantity.Value > 0)
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-success badge-dot m-r-10"></div>
+                        <div>Còn hàng</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-success badge-dot m-r-10"></div>
+                        <div>Hết hàng</div>
+                    </div>
+                }
+
+            <td>
+                <a class="btn btn-primary btn-tone m-r-5" asp-controller="Book" asp-action="Details" asp-route-id="@item.Id">Chi tiết</a>
+                <a class="btn btn-secondary btn-tone m-r-5" asp-controller="Book" asp-action="Edit" asp-route-id="@item.Id">Sửa</a>
+                <a class="btn btn-success btn-tone m-r-5" asp-controller="Book" asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
+
+            </td>
+        </tr>
+    }
+}

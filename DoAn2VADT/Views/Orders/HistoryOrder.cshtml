@@ -1,0 +1,61 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<DoAn2VADT.Database.Entities.Order>
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Lich su thanh toan" + CurrentPage;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Danh sách sản phẩm : trang @CurrentPage</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-md-8">
+                <div class="row">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-hover e-commerce-table">
+            <thead>
+                <tr>
+                    <th>Người thực hiện</th>
+                    <th>Tông tiền</th>
+                    <th>Ngày tạo</th>
+                    <th>Chức năng</th>
+                </tr>
+            </thead>
+            <tbody id="records_table">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Total VNĐ</td>
+                        <td>@item.CreatedAt</td>
+                        <td>
+                            <a class="btn btn-primary btn-tone m-r-5" asp-controller="Orders" asp-action="OrderDetail" asp-route-id="@item.Id">Chi tiết</a>
+                            <a class="btn btn-success btn-tone m-r-5" asp-controller="Book" asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
+
+                        </td>
+                    </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+        <div aria-label="Page navigation example">
+            <ul class="pagination">
+                <pager class="pager-container" list="@Model" list="@Model" asp-controller="Orders" asp-route-CatID="@ViewBag.CurrentCateID" asp-action="Index" />
+            </ul>
+        </div>
+    </div>
+</div>

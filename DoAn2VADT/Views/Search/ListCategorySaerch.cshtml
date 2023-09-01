@@ -1,0 +1,18 @@
+﻿@if (Model != null)
+{
+
+    foreach (var item in Model)
+    {
+        <tr>
+            <th scope="row" class="text-center">@item.Name</th>
+            <th scope="row" class="text-center">@item.Description</th>
+            <th scope="col" class="text-center">@item.CreatedAt</th>
+            <td class="text-center">
+                <a class="btn btn-primary btn-tone m-r-5 fas fa-eye" asp-controller="Categorie" asp-action="Details" asp-route-id="@item.Id"></a>
+                <a class="btn btn-secondary btn-tone m-r-5 fas fa-edit" asp-controller="Categorie" asp-action="Edit" asp-route-id="@item.Id"></a>
+                <a class="btn btn-danger btn-tone m-r-5 far fa-trash-alt" asp-controller="Categorie" asp-action="Delete" asp-route-id="@item.Id"></a>
+
+            </td>
+        </tr>
+    }
+}

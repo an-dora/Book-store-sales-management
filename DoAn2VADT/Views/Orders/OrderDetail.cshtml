@@ -1,0 +1,40 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<DoAn2VADT.Database.Entities.OrderDetail>
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Chit tien" + CurrentPage;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="table-responsive">
+    <table class="table table-hover e-commerce-table">
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Anh</th>
+                <th>Giá bán</th>
+                <th>Số lượng</th>
+            </tr>
+        </thead>
+        <tbody id="records_table">
+            @if (Model != null)
+            {
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Book.Name</td>
+                        <td><img width="60" height="90" src="~/images/book/@item.Book.Image" alt="@item.Name" /></td>
+
+                        <td>@item.Price VNĐ</td>
+                        <td>@item.Quanlity</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    <div aria-label="Page navigation example">
+        <ul class="pagination">
+            <pager class="pager-container" list="@Model" asp-controller="Orders" asp-route-CatID="@ViewBag.CurrentCateID" asp-action="Index" />
+        </ul>
+    </div>
+    <a asp-action="Index">Back to List</a>

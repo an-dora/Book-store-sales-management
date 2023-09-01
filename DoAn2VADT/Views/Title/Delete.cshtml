@@ -1,0 +1,75 @@
+﻿@model DoAn2VADT.Database.Entities.Title
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Delete">
+            <div class="page-header">
+                <div class="header-sub-title">
+                    <nav class="breadcrumb breadcrumb-dash">
+                        <a asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+                        <a asp-controller="Title" asp-action="Index" class="breadcrumb-item">Title</a>
+                        <span class="breadcrumb-item active">Xóa</span>
+                    </nav>
+                </div>
+            </div>
+            <!-- Default box -->
+
+            <div class="card-header">
+                <div class="row">
+                    <div class=" col-md-6">
+                        <strong>DANH SÁCH TITLE</strong>
+                    </div>
+                    <div class=" col-md-6 text-right">
+                        <a class=" btn btn-primary fas fa-undo-alt" asp-action="Index"></a>
+                        <button class=" btn btn-danger far fa-trash-alt" type="submit"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label">Tên title</label>
+                    <div class="form-control">@Html.DisplayFor(model => model.Name)</div>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label">Mô tả</label>
+                    <div class="form-control">@Html.DisplayFor(model => model.Description)</div>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="CreatedAt" class="control-label">Ngày tạo</label>
+                        <div class="form-control">@Html.DisplayFor(model => model.CreatedAt)</div>
+                        <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="UpdatedAt" class="control-label">Ngày update</label>
+                        <div class="form-control">@Html.DisplayFor(model => model.UpdatedAt)</div>
+                        <span asp-validation-for="UpdatedAt" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="CreateUserId" class="control-label">UserID</label>
+                        <input asp-for="CreateUserId" class="form-control" />
+                        <span asp-validation-for="CreateUserId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="UpdateUserId" class="control-label">Update UserID</label>
+                        <input asp-for="UpdateUserId" class="form-control" />
+                        <span asp-validation-for="UpdateUserId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+        </form>
+    </div>
+
+    <!-- /.content -->
+</div>

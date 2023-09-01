@@ -1,0 +1,22 @@
+﻿@using DoAn2VADT.Database.Entities
+@model List<Order>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @item.Id
+            </td>
+            <td>@item.Name</td>
+            <td>@item.CreatedAt</td>
+            <td>@item.Total</td>
+            <td>
+                <a class="btn btn-primary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Details" asp-route-id="@item.Id">Chi tiết</a>
+                <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
+
+            </td>
+        </tr>
+    }
+}

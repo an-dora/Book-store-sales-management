@@ -1,0 +1,71 @@
+﻿@model DoAn2VADT.Database.Entities.Author
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card">
+    <div class="card-body">
+        <form asp-controller="Author" asp-action="Edit" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
+            <!-- Main content -->
+            <div class="page-header">
+                <div class="header-sub-title">
+                    <nav class="breadcrumb breadcrumb-dash">
+                        <a asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+                        <a asp-controller="Author" asp-action="Index" class="breadcrumb-item">Danh sách tác giả</a>
+                        <span class="breadcrumb-item active">Update tác giả</span>
+                    </nav>
+                </div>
+            </div>
+            <!-- Default box -->
+            <div class="card-header">
+                <div class=" row">
+                    <div class=" col-md-6">
+                        <strong>DANH SÁCH TÁC GIẢ</strong>
+                    </div>
+                    <div class=" col-md-6 text-right">
+                        <a class="btn btn-success fas fa-undo-alt " asp-action="Index"></a>
+                        <button class="btn btn-primary fas fa-save" type="submit"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <input type="hidden" asp-for="CreatedAt" />
+                <input type="hidden" asp-for="UpdatedAt" />
+                <input type="hidden" asp-for="DeletedAt" />
+                <input type="hidden" asp-for="CreateUserId" />
+                <input type="hidden" asp-for="UpdateUserId" />
+                <input type="hidden" asp-for="Image" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HomeTown" class="control-label"></label>
+                    <input asp-for="HomeTown" class="form-control" />
+                    <span asp-validation-for="HomeTown" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Birthday" class="control-label"></label>
+                    <input asp-for="Birthday" class="form-control" />
+                    <span asp-validation-for="Birthday" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="font-weight-semibold" for="productBrand">Ảnh đại diện</label>
+                    <input name="fThumb" type="file" class="form-control-file" asp-for="Image" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </form>
+    </div>
+</div>

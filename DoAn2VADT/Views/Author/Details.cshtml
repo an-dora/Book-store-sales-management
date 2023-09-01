@@ -1,0 +1,91 @@
+﻿@model DoAn2VADT.Database.Entities.Author
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card">
+    <div class="card-body">
+        <form asp-action="Delete">
+            <div class="page-header">
+                <div class="header-sub-title">
+                    <nav class="breadcrumb breadcrumb-dash">
+                        <a asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+                        <a asp-controller="Author" asp-action="Index" class="breadcrumb-item">Danh sách tác giả</a>
+                        <span class="breadcrumb-item active">Xóa</span>
+                    </nav>
+                </div>
+            </div>
+            <div class="card-header">
+                <div class=" row">
+                    <div class=" col-md-6">
+                        <strong>CHI TIẾT TÁC GIẢ</strong>
+                    </div>
+                    <div class=" col-md-6 text-right">
+                        <a class=" btn btn-primary fas fa-undo-alt" asp-action="Index"></a>
+                        <button class=" btn btn-danger far fa-trash-alt" type="submit"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <h4 class="card-title">Chi tiết</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">Tên tác giả</th>
+                                <th scope="col" class="text-center">Image</th>
+                                <th scope="col" class="text-center">Thông tin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">@Model.Name</td>
+                                <td class="text-center"><img width="90" height="130" src="~/images/author/@Model.Image" alt="@Model.Name" /></td>
+                                <td>
+                                    <div class="form-group">
+                                        <label asp-for="HomeTown" class="control-label">Địa chỉ</label>
+                                        <div class="form-control">@Html.DisplayFor(model => model.HomeTown)</div>
+                                        <span asp-validation-for="HomeTown" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="HomeTown" class="control-label">Tiểu sử</label>
+                                        <div class="form-control">@Html.DisplayFor(model => model.Description)</div>
+                                        <span asp-validation-for="HomeTown" class="text-danger"></span>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label asp-for="CreatedAt" class="control-label">Ngày tạo</label>
+                                            <div class="form-control">@Html.DisplayFor(model => model.CreatedAt)</div>
+                                            <span asp-validation-for="CreatedAt" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label asp-for="UpdatedAt" class="control-label">Ngày update</label>
+                                            <div class="form-control">@Html.DisplayFor(model => model.UpdatedAt)</div>
+                                            <span asp-validation-for="UpdatedAt" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label asp-for="CreateUserId" class="control-label">UserID</label>
+                                            <input asp-for="CreateUserId" class="form-control" />
+                                            <span asp-validation-for="CreateUserId" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label asp-for="UpdateUserId" class="control-label">Update UserID</label>
+                                            <input asp-for="UpdateUserId" class="form-control" />
+                                            <span asp-validation-for="UpdateUserId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

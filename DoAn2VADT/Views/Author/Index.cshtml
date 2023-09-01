@@ -1,0 +1,107 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<DoAn2VADT.Database.Entities.Author>
+
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Index" + CurrentPage;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Danh sách tác giả : trang @CurrentPage</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-affix m-v-10">
+                            <i class="prefix-icon anticon anticon-search opacity-04"></i>
+                            <input id="keyword" name="keyword" type="text" class="form-control" placeholder="Tìm kiếm  tác giả">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 text-right">
+                <a class="btn btn-primary" asp-controller="Author" asp-action="Create"><i class="anticon anticon-plus-circle m-r-5"></i><span>Thêm tác giả</span></a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <th>Tên tác giả</th>
+                        <th>Image</th>
+                        <th>Quê quán</th>
+                        <th>Ngày sinh</th>
+                        <th>Tiểu sử</th>
+                        <th>Ngày tạo</th>
+                        <th class="text-center style="width:300px;">Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody id="records_table">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @item.Name
+                                </td>
+                                <td><img width="60" height="90" src="~/images/author/@item.Image" alt="@item.Name" /></td>
+                                <td>@item.HomeTown</td>
+                                <td>@item.Birthday </td>
+                                <td>@item.Description </td>
+                                <td>@item.CreatedAt</td>
+                                <td class="text-center" style="width:300px;">
+                                    <a class="btn btn-primary btn-tone m-r-5 fas fa-eye" asp-controller="Author" asp-action="Details" asp-route-id="@item.Id"></a>
+                                    <a class="btn btn-secondary btn-tone m-r-5 fas fa-edit" asp-controller="Author" asp-action="Edit" asp-route-id="@item.Id"></a>
+                                    <a class="btn btn-danger btn-tone m-r-5 far fa-trash-alt" asp-controller="Author" asp-action="Delete" asp-route-id="@item.Id"></a>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+
+
+                </tbody>
+            </table>
+            <div aria-label="Page navigation example">
+                <ul class="pagination">
+                    <pager class="pager-container" list="@Model"  asp-controller="Author" asp-route-CatID="@ViewBag.CurrentCateID" asp-action="Index" />
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#keyword").keyup(function () {
+                var strkeyword = $('#keyword').val();
+                $.ajax({
+                    url: '/Search/FindAuthor/',
+                    datatype: "json",
+                    type: "POST",
+                    data: { keyword: strkeyword },
+                    async: true,
+                    success: function (results) {
+                        $("#records_table").html("");
+                        $("#records_table").html(results);
+                    },
+                    error: function (xhr) {
+                        alert('error');
+                    }
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,135 @@
+﻿<div class="side-nav">
+    <div class="side-nav-inner">
+        <ul class="side-nav-menu scrollable">
+
+            <li class="nav-item">
+                <a class="dropdown-toggle" asp-action="Index" asp-controller="Dash">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-dashboard"></i>
+                    </span>
+                    <span class="title">Dashboard</span>
+                    <span class="arrow">
+                        <i class="arrow-icon"></i>
+                    </span>
+                </a>
+            </li>
+            @*Nhập và bán sách *@
+            <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin:0">
+            <li class="nav-item">
+                <a asp-controller="Orders" asp-action="Index">
+                    <span class="icon-holder">
+                        <i class="fas fa-address-book"></i>
+                    </span>
+                    <span class="title">Bán sách</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Import" asp-action="Index">
+                    <span class="icon-holder">
+                        <i class="fas fa-address-book"></i>
+                    </span>
+                    <span class="title">Nhập sách</span>
+                </a>
+            </li>
+            <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin:0">
+            @*Danh mục quản lí *@
+            <li class="nav-item">
+                <a class="dropdown-toggle" asp-action="Index" asp-controller="Book">
+                    <span class="icon-holder">
+                        <i class="fas fa-book"></i>
+                    </span>
+                    <span class="title">Quản lý Sách</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="dropdown-toggle" asp-action="Index" asp-controller="Title">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-file"></i>
+                    </span>
+                    <span class="title">Quản lý Title</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="dropdown-toggle" asp-action="Index" asp-controller="Categorie">
+                    <span class="icon-holder">
+                        <i class="fas fa-tasks"></i>
+                    </span>
+                    <span class="title">Quản lý thể loại</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Author" asp-action="Index">
+                    <span class="icon-holder">
+                        <i class="fas fa-user-tie"></i>
+                    </span>
+                    <span class="title">Quản lý tác giả</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a asp-controller="Distributor" asp-action="Index">
+                    <span class="icon-holder">
+                        <i class="fas fa-house-damage"></i>
+                    </span>
+                    <span class="title">Quản nhà PT</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Publisher" asp-action="Index">
+                    <span class="icon-holder">
+                        <i class="fas fa-warehouse"></i>
+                    </span>
+                    <span class="title">Quản lý nhà XB</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin:0">
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-form"></i>
+                    </span>
+                    <span class="title">Khuyến mãi</span>
+                    <span class="arrow">
+                        <i class="arrow-icon"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="form-layouts.html">Giảm giá</a>
+                    </li>
+                    <li>
+                        <a href="form-validation.html">Quà tặng</a>
+                    </li>
+                </ul>
+            </li>
+            <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin:0">
+            <li class="nav-item">
+                <a asp-controller="AdminAccounts" asp-action="Index">
+                    <span class="icon-holder">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                    <span class="title">Quản lý User</span>
+                </a>
+            </li>
+            <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin:0">
+            <li class="nav-item">
+                <a class="dropdown-toggle" asp-action="Index" asp-controller="ThongKe">
+                    <span class="icon-holder">
+                        <i class="fas fa-donate"></i>
+                    </span>
+                    <span class="title">Thống kê doanh thu</span>
+                </a>
+            </li>
+             <hr style="height:2px;border-width:0;color:gray;background-color:gray;margin:0">
+            <li class="nav-item">
+                <a class="dropdown-toggle" asp-action="Index" asp-controller="ThongKeTonKho">
+                    <span class="icon-holder">
+                        <i class="fas fa-x-ray"></i>
+                    </span>
+                    <span class="title">Thống kê tồn kho</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

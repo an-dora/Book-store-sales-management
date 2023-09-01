@@ -1,0 +1,21 @@
+﻿@using DoAn2VADT.Database.Entities
+@model List<Book>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img width="60" height="90" src="~/images/book/@item.Image" alt="@item.Name" />
+            </td>
+            <td>@item.Name</td>
+            <td>@item.CreatedAt</td>
+            <td>@item.Price.Value.ToString("#,## VND")</td>
+            <td>@item.Quantity</td>
+            <td>
+                <a class="btn btn-primary btn-tone m-r-5 fas fa-eye" asp-controller="ThongKeTonKho" asp-action="Details" asp-route-id="@item.Id"></a>
+                <a class="btn btn-danger btn-tone m-r-5 far fa-trash-alt" asp-controller="ThongKeTonKho" asp-action="Delete" asp-route-id="@item.Id"></a>
+            </td>
+        </tr>
+    }
+}
